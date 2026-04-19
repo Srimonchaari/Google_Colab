@@ -9,8 +9,12 @@ llama-index-llms-ollama>=0.1.0
 llama-index-embeddings-huggingface>=0.1.0
 sentence-transformers>=2.2.0
 
-# Gradio UI
+# Gradio UI (legacy — use api.py + React frontend instead)
 gradio>=4.0.0
+
+# FastAPI backend for React UI
+fastapi>=0.110.0
+uvicorn>=0.27.0
 
 # PDF ingestion
 pypdf>=3.0.0

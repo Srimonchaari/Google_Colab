@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #f5f5f7;
+    color: #1d1d1f;
+  }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #c7c7cc; border-radius: 99px; }
+  ::-webkit-scrollbar-thumb:hover { background: #aeaeb2; }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #1d1d1f 0%, #5856d6 45%, #0071e3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl border border-black/[0.06] shadow-sm;
+  }
+
+  .section-label {
+    @apply text-[11px] font-semibold tracking-[0.1em] uppercase text-ss-t3;
+  }
+
+  /* Clear visual break between About and the pipeline/results zone */
+  .results-zone {
+    background: linear-gradient(to bottom, #f5f5f7 0%, #f0f0f2 100%);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+  }
+}

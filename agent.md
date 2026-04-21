@@ -1,4 +1,4 @@
-# agent.md — Autonomous Agent Behaviour Rules for SensorSpeak
+# agent.md - Autonomous Agent Behaviour Rules for SensorSpeak
 
 This file governs how Claude Code behaves when operating autonomously (sub-agents,
 tool-use loops, multi-step tasks) inside this project directory.
@@ -28,26 +28,26 @@ If a request falls outside the allowed column, **ask before acting**.
 
 ### When editing the notebook
 
-1. Read the current cell before editing — never overwrite without reading
+1. Read the current cell before editing - never overwrite without reading
 2. Keep all named constants at the **top of their cell**, not buried in function bodies
 3. Do not change a constant's default value unless explicitly instructed
-4. Do not add `import` statements inside functions — imports go in Section 0 or Section 1
+4. Do not add `import` statements inside functions - imports go in Section 0 or Section 1
 5. After any edit, verify JSON validity: the notebook must parse as valid `.ipynb`
-6. Preserve `_segment_label`, `_raw_accel_x/y/z` column names — downstream cells depend on them
+6. Preserve `_segment_label`, `_raw_accel_x/y/z` column names - downstream cells depend on them
 
 ### When adding a new event type
 
 Update all five of these locations atomically:
 
-1. `_classify_sample()` — add the rule
-2. `_SEED_MAP` — add the plain-English seed
-3. `EVENT_COLORS` — add a hex colour
+1. `_classify_sample()` - add the rule
+2. `_SEED_MAP` - add the plain-English seed
+3. `EVENT_COLORS` - add a hex colour
 4. README.md **Detected Event Types** table
 5. CLAUDE.md **Event Types** table
 
 ### When changing a threshold constant
 
-1. Change the constant definition only — never the threshold name
+1. Change the constant definition only - never the threshold name
 2. Re-run the summary of affected downstream constants in a code comment
 3. Update the README.md **Tunable Parameters** table if the default changes
 
@@ -61,18 +61,18 @@ Check the Roadmap in CLAUDE.md first:
 
 ## Output Hygiene
 
-- Always save outputs to the `outputs/` directory — never to the project root
+- Always save outputs to the `outputs/` directory - never to the project root
 - Never delete existing output files without explicit instruction
-- The PNG file is regenerated on each full run — this is expected behaviour
-- CSV files are overwritten on each full run — this is expected behaviour
+- The PNG file is regenerated on each full run - this is expected behaviour
+- CSV files are overwritten on each full run - this is expected behaviour
 
 ---
 
 ## LLM / Ollama Rules
 
-- Always keep the keyword fallback path functional — never make Ollama a hard dependency
+- Always keep the keyword fallback path functional - never make Ollama a hard dependency
 - If Ollama is unavailable, the pipeline must complete with degraded (keyword) answers, not crash
-- Never swap the LLM model silently — always surface the current `OLLAMA_MODEL` value in output
+- Never swap the LLM model silently - always surface the current `OLLAMA_MODEL` value in output
 - The fallback message must tell the user how to enable Ollama (tip line in `build_index()`)
 
 ---
@@ -92,9 +92,9 @@ Check the Roadmap in CLAUDE.md first:
 - **Constant names**: `UPPER_SNAKE_CASE`
 - **Private helpers**: prefix with `_` (`_classify_sample`, `_severity_label`)
 - **Dataclass fields**: `snake_case`, typed
-- **No inline lambdas** in production logic — named functions only
-- **No walrus operator** (`:=`) — Python 3.10 minimum compatibility
-- **No f-string debug prints left in final code** — use proper `print()` calls with labels
+- **No inline lambdas** in production logic - named functions only
+- **No walrus operator** (`:=`) - Python 3.10 minimum compatibility
+- **No f-string debug prints left in final code** - use proper `print()` calls with labels
 
 ---
 
@@ -103,7 +103,7 @@ Check the Roadmap in CLAUDE.md first:
 1. Read `CLAUDE.md` for project constraints
 2. Read `README.md` for architecture context
 3. Read the relevant cell in `SensorSpeak.ipynb` for current implementation
-4. If still unclear, **ask the user** — do not guess and silently change behaviour
+4. If still unclear, **ask the user** - do not guess and silently change behaviour
 
 ---
 

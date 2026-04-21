@@ -1,5 +1,5 @@
 """
-ui_app.py — SensorSpeak Gradio UI  (Apple light mode)
+ui_app.py - SensorSpeak Gradio UI  (Apple light mode)
 
 Run:
     python ui_app.py
@@ -24,7 +24,7 @@ from llm_config import LLMBackend, get_llm, get_embed_model
 # ── Pipeline state ──────────────────────────────────────────────────────────────
 _state = {'df': None, 'events': [], 'summaries': [], 'index': None, 'iqr': {}}
 
-# ── Apple light palette (hardcoded — no theming) ────────────────────────────────
+# ── Apple light palette (hardcoded - no theming) ────────────────────────────────
 # bg0 = #f2f2f7   system background
 # bg1 = #ffffff   card / panel surface
 # bg2 = #f2f2f7   secondary fill (same as bg0)
@@ -132,30 +132,30 @@ button.secondary:hover {
     color: #1c1c1e !important;
 }
 
-/* ── Chatbot ─────────────────────────────────────────────────────────────────── */
-.chatbot, [data-testid="chatbot"], .chatbot .wrap {
+/* ── Chatbot (Gradio 6.x selectors) ─────────────────────────────────────────── */
+.chatbot, [data-testid="chatbot"] {
     background: #ffffff !important;
     border: 1px solid rgba(60,60,67,.12) !important;
     border-radius: 16px !important;
 }
-.chatbot .message.user .bubble {
+/* user bubble */
+[data-testid="chatbot"] .user > div,
+.chatbot .user > div {
     background: #007aff !important;
     color: #ffffff !important;
-    border: none !important;
     border-radius: 20px 20px 4px 20px !important;
-    box-shadow: none !important;
     font-size: .95rem !important;
 }
-.chatbot .message.bot .bubble,
-.chatbot .message.assistant .bubble {
+/* assistant bubble */
+[data-testid="chatbot"] .bot > div,
+[data-testid="chatbot"] .assistant > div,
+.chatbot .bot > div {
     background: #e9e9eb !important;
     color: #000000 !important;
-    border: none !important;
     border-radius: 20px 20px 20px 4px !important;
-    box-shadow: none !important;
     font-size: .95rem !important;
 }
-.chatbot .placeholder { color: rgba(60,60,67,.3) !important; }
+.empty.svelte-byatnx { color: rgba(60,60,67,.3) !important; }
 
 /* ── Scrollbars ──────────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -383,7 +383,7 @@ def _sev_cls(s: str) -> str:
 
 def _events_html(events: list) -> str:
     if not events:
-        return '<p class="ss-mt">No events yet — run the pipeline first.</p>'
+        return '<p class="ss-mt">No events yet - run the pipeline first.</p>'
     rows = []
     for ev in events:
         sev = _severity_label(ev.max_mag)
@@ -414,7 +414,7 @@ def _iqr_html(r: dict) -> str:
         f'</div>'
     )
 
-def _stats_html(samples='—', events='—', top='—', clipped='—') -> str:
+def _stats_html(samples='-', events='-', top='-', clipped='-') -> str:
     return (
         f'<div class="ss-stats">'
         f'<div class="ss-card"><div class="ss-card-val c-blue">{samples}</div><div class="ss-card-lbl">Samples</div></div>'
@@ -428,7 +428,7 @@ def _hero_html() -> str:
     return (
         '<div class="ss-hero">'
         '<div class="ss-wordmark">⚡ SensorSpeak</div>'
-        '<div class="ss-sub">Bosch Accelerometer · Motion Event Explainer · Natural-Language Query</div>'
+        '<div class="ss-sub">Accelerometer · Motion Event Explainer · Natural-Language Query</div>'
         '<div class="ss-pills-row">'
         '<span class="ss-pill ss-pill-green">● Fully Offline</span>'
         '<span class="ss-pill ss-pill-indigo">No API Keys</span>'
@@ -485,18 +485,21 @@ def _render_figure(df: pd.DataFrame, events: list) -> Image.Image:
         ax.grid(color=GRD, linewidth=0.6, alpha=1.0)
         ax.set_axisbelow(True)
 
-    # Panel 1 — raw axes
+    # shade all 3 panels with event bands
+    for ev in events:
+        c = ev_pal.get(ev.type, '#8e8e93')
+        for ax in axes:
+            ax.axvspan(ev.start, ev.end, alpha=0.13, color=c, zorder=1)
+
+    # Panel 1 - raw axes
     axes[0].plot(t, df['_raw_accel_x'], color='#ff3b30', lw=0.8, label='X lateral',  alpha=0.85)
     axes[0].plot(t, df['_raw_accel_y'], color='#34c759', lw=0.8, label='Y forward',  alpha=0.85)
     axes[0].plot(t, df['_raw_accel_z'], color='#007aff', lw=0.8, label='Z vertical', alpha=0.85)
-    axes[0].set_ylabel('m/s²', color=TXT, fontsize=8)
+    axes[0].set_ylabel('Axes (m/s²)', color=TXT, fontsize=8)
     axes[0].legend(loc='upper right', fontsize=7, facecolor=BG,
                    edgecolor=GRD, labelcolor='#1c1c1e', framealpha=0.95)
 
-    # Panel 2 — magnitude + event bands
-    for ev in events:
-        axes[1].axvspan(ev.start, ev.end, alpha=0.15,
-                        color=ev_pal.get(ev.type, '#8e8e93'), zorder=1)
+    # Panel 2 - magnitude + event legend
     axes[1].plot(t, df['accel_magnitude'], color='#af52de', lw=1.0, label='Magnitude', zorder=2)
     if '_iqr_outlier' in df.columns:
         out = df[df['_iqr_outlier']]
@@ -510,16 +513,16 @@ def _render_figure(df: pd.DataFrame, events: list) -> Image.Image:
                    framealpha=0.95, ncol=3)
     axes[1].set_ylabel('Magnitude', color=TXT, fontsize=8)
 
-    # Panel 3 — rolling stats + thresholds
+    # Panel 3 - rolling stats + thresholds
     axes[2].plot(t, df['rolling_mean'], color='#ff9500', lw=1.0, label='Rolling mean')
     axes[2].plot(t, df['rolling_std'],  color='#5856d6', lw=1.0, label='Rolling std')
     axes[2].axhline(IDLE_STD_MAX,    color='#34c759', ls='--', lw=0.9, alpha=0.8,
-                    label=f'Idle ≤ {IDLE_STD_MAX}')
+                    label=f'Idle ≤{IDLE_STD_MAX}')
     axes[2].axhline(IMPACT_MEAN_MIN, color='#ff3b30', ls='--', lw=0.9, alpha=0.8,
-                    label=f'Impact ≥ {IMPACT_MEAN_MIN}')
+                    label=f'Impact ≥{IMPACT_MEAN_MIN}')
     axes[2].legend(loc='upper right', fontsize=7, facecolor=BG,
                    edgecolor=GRD, labelcolor='#1c1c1e', framealpha=0.95, ncol=2)
-    axes[2].set_ylabel('Value', color=TXT, fontsize=8)
+    axes[2].set_ylabel('Rolling', color=TXT, fontsize=8)
     axes[2].set_xlabel('Time (s)', color=TXT, fontsize=8.5)
 
     buf = io.BytesIO()
@@ -531,10 +534,10 @@ def _render_figure(df: pd.DataFrame, events: list) -> Image.Image:
 # ── Pipeline handler ─────────────────────────────────────────────────────────────
 
 BACKEND_MAP = {
-    'Ollama — local, no key (default)':   LLMBackend.OLLAMA,
-    'OpenAI GPT — needs OPENAI_API_KEY':  LLMBackend.OPENAI,
-    'HuggingFace API — needs HF_API_KEY': LLMBackend.HUGGINGFACE_API,
-    'HuggingFace Local — no key':         LLMBackend.HUGGINGFACE_LOCAL,
+    'Ollama - local, no key (default)':   LLMBackend.OLLAMA,
+    'OpenAI GPT - needs OPENAI_API_KEY':  LLMBackend.OPENAI,
+    'HuggingFace API - needs HF_API_KEY': LLMBackend.HUGGINGFACE_API,
+    'HuggingFace Local - no key':         LLMBackend.HUGGINGFACE_LOCAL,
 }
 
 def run(csv_file, backend_name: str):
@@ -577,7 +580,7 @@ def run(csv_file, backend_name: str):
     counts   = {}
     for ev in events:
         counts[ev.type] = counts.get(ev.type, 0) + 1
-    dominant = max(counts, key=counts.get) if counts else '—'
+    dominant = max(counts, key=counts.get) if counts else '-'
 
     return (
         status,
@@ -594,7 +597,7 @@ def chat(user_msg: str, history: list):
     if not user_msg.strip():
         return '', history
     if _state['df'] is None:
-        bot = '⚠️  Run the pipeline first — click **▶ Run Pipeline** on the left.'
+        bot = '⚠️  Run the pipeline first - click **▶ Run Pipeline** on the left.'
     else:
         bot = _query_events(user_msg, index=_state['index'],
                             summaries=_state['summaries'])
@@ -628,7 +631,7 @@ def build_ui():
                 )
                 backend_dd = gr.Dropdown(
                     choices=list(BACKEND_MAP.keys()),
-                    value='Ollama — local, no key (default)',
+                    value='Ollama - local, no key (default)',
                     label='LLM Backend',
                 )
                 run_btn = gr.Button(

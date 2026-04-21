@@ -1,4 +1,4 @@
-# SensorSpeak — Quickstart Guide
+# SensorSpeak - Quickstart Guide
 
 One page. Everything you need to go from zero to a running notebook.
 
@@ -69,7 +69,7 @@ Section 2 of the notebook contains a commented-out upload cell. To use real sens
 | `KeyError: '_raw_accel_x'` | Feature engineering not run | Run cells in order (Section 3 must precede Section 8) |
 | `ValueError: missing columns` | CSV missing required columns | Add `timestamp`, `accel_x`, `accel_y`, `accel_z` columns |
 | Very slow embedding | Running on CPU only | Switch Colab to T4 GPU runtime |
-| Terse / short LLM answers | Model too small | Swap to `qwen2.5:3b` — see Model Swap Guide below |
+| Terse / short LLM answers | Model too small | Swap to `qwen2.5:3b` - see Model Swap Guide below |
 | `No matching events found` | Keyword fallback, no overlap | Rephrase query to include event type keywords (idle, impact, shaking, walking) |
 | Notebook runs but no PNG saved | `outputs/` dir not created | Re-run Section 9; the cell creates the directory automatically |
 
@@ -80,7 +80,7 @@ Section 2 of the notebook contains a commented-out upload cell. To use real sens
 Change `OLLAMA_MODEL` at the top of **Section 6**, then re-run Sections 6, 7, and 10.
 
 ```python
-# Section 6 — change this constant:
+# Section 6 - change this constant:
 OLLAMA_MODEL = 'qwen2.5:3b'   # or 'llama3.2:1b' or 'smollm2:360m'
 ```
 

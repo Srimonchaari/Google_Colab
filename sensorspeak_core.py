@@ -18,6 +18,7 @@ GRAVITY_Z             = 9.81
 SEG_IDLE_DURATION     = 5
 SEG_WALK_DURATION     = 8
 SEG_IMPACT_DURATION   = 2
+SEG_RECOVERY_DURATION = 1   # brief idle after impact; prevents walking artefact before shaking
 SEG_SHAKE_DURATION    = 4
 IDLE_NOISE            = 0.05
 WALK_AMPLITUDE        = 1.2
@@ -48,8 +49,8 @@ WALKING_MEAN_MIN      = 0.8
 WALKING_MEAN_MAX      = 2.5
 WALKING_STD_MIN       = 0.10
 WALKING_STD_MAX       = 1.8
-MIN_EVENT_SAMPLES     = 10
-EVENT_MERGE_GAP       = 25   # merge same-type events separated by fewer samples than this
+MIN_EVENT_SAMPLES     = 30   # raised: suppresses sub-0.3s unknown transition fragments
+EVENT_MERGE_GAP       = 30   # merge same-type events separated by fewer samples than this
 
 # ── LLM / INDEX SETTINGS ──────────────────────────────────────────────────────
 OLLAMA_MODEL          = 'qwen2.5:0.5b'
@@ -125,6 +126,13 @@ def generate_synthetic_data() -> pd.DataFrame:
     az[mid - 8 : mid + 8] += IMPACT_SPIKE
     segments.append(pd.DataFrame({'accel_x': ax, 'accel_y': ay, 'accel_z': az,
                                    '_segment_label': 'impact'}))
+
+    t = _make_time(SEG_RECOVERY_DURATION)
+    ax = rng.normal(0, IDLE_NOISE, len(t))
+    ay = rng.normal(0, IDLE_NOISE, len(t))
+    az = rng.normal(GRAVITY_Z, IDLE_NOISE, len(t))
+    segments.append(pd.DataFrame({'accel_x': ax, 'accel_y': ay, 'accel_z': az,
+                                   '_segment_label': 'idle'}))
 
     t = _make_time(SEG_SHAKE_DURATION)
     ax = SHAKE_AMPLITUDE * np.sin(2 * np.pi * SHAKE_FREQ_HZ * t) + rng.normal(0, SHAKE_NOISE, len(t))

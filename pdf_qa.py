@@ -1,5 +1,5 @@
 """
-pdf_qa.py — Upload a Bosch sensor datasheet PDF and ask questions.
+pdf_qa.py - Upload a sensor datasheet PDF and ask questions.
 
 Combines:
   - Event summaries from the SensorSpeak pipeline
@@ -181,7 +181,7 @@ def build_combined_index(
     # Resolve LLM
     if llm is None:
         if not _is_ollama_running():
-            print('Ollama not running — PDF index requires an LLM. '
+            print('Ollama not running - PDF index requires an LLM. '
                   'Start Ollama or pass a custom llm= argument.')
             return None
         llm = Ollama(model=OLLAMA_MODEL, request_timeout=OLLAMA_TIMEOUT)
@@ -286,7 +286,7 @@ if __name__ == '__main__':
     events    = detect_events(df)
     summaries = [summarize_event(ev) for ev in events]
 
-    # Point to a real Bosch PDF to test:
+    # Point to a real Sensor PDF to test:
     # index = build_combined_index(['BMA400_datasheet.pdf'], events, summaries)
     # print(query_combined(index, 'What is the operating voltage range?'))
 

@@ -78,7 +78,7 @@ export function Hero({ onScrollDown }: HeroProps) {
           transition={{ duration: 0.6, delay: 0.24, ease: EASE }}
           className="text-[clamp(14px,1.6vw,17px)] text-ss-t3 max-w-xl mx-auto leading-relaxed mb-12"
         >
-          Upload Bosch accelerometer data. Detect idle, walking, impact, and shaking events
+          Upload accelerometer data. Detect idle, walking, impact, and shaking events
           with rule-based logic. Ask plain-English questions. Everything runs on your machine.
         </motion.p>
 

@@ -1,5 +1,5 @@
 """
-finetune_prep.py — Convert SensorSpeak synthetic data into a fine-tuning dataset.
+finetune_prep.py - Convert SensorSpeak synthetic data into a fine-tuning dataset.
 
 WHAT THIS DOES
 --------------
@@ -31,7 +31,7 @@ FINE-TUNING OPTIONS
 
 3. HuggingFace AutoTrain (no-code):
    - Upload the JSONL to https://ui.autotrain.huggingface.co
-   - Select model, click Train — returns a fine-tuned model card
+   - Select model, click Train - returns a fine-tuned model card
 
 RUN
 ---
@@ -146,7 +146,7 @@ def _summary_samples(events: List[MotionEvent], summaries: List[str]) -> List[di
 
 def _threshold_qa_samples() -> List[dict]:
     """
-    Generate Q&A pairs about detection thresholds — builds domain knowledge into the model.
+    Generate Q&A pairs about detection thresholds - builds domain knowledge into the model.
     """
     return [
         {
@@ -282,7 +282,7 @@ Create a file named 'Modelfile' with this content:
 
    FROM qwen2.5:0.5b
    SYSTEM \"\"\"
-   You are SensorSpeak, an expert at interpreting Bosch accelerometer data.
+   You are SensorSpeak, an expert at interpreting accelerometer data.
    You understand motion events: idle (rolling_std < 0.15), walking (mean 0.8-2.5,
    std 0.10-1.8), impact (mean > 2.5 AND std > 1.0), shaking (std > 1.8).
    Always cite the time range, severity, and physical explanation in your answers.
@@ -303,7 +303,7 @@ And update OLLAMA_MODEL in sensorspeak_core.py:
 2. Create new project → Text Generation → Upload """ + jsonl_path + """
 3. Select model: Qwen/Qwen2.5-0.5B-Instruct
 4. Set instruction column = 'instruction', response column = 'output'
-5. Click Train — HuggingFace runs it in their cloud
+5. Click Train - HuggingFace runs it in their cloud
 6. Download the model and use with llm_config.py HUGGINGFACE_LOCAL backend
 """)
     print('=' * 65)

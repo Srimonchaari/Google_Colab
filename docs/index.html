@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SensorSpeak — Bosch Accelerometer Motion Event Explainer</title>
+  <title>SensorSpeak - Accelerometer Motion Event Explainer</title>
   <meta name="description" content="Ask plain-English questions about your accelerometer data. Rule-based motion event detection + local LLM. No cloud. No API keys. No ML training." />
-  <meta property="og:title" content="SensorSpeak — Bosch Accelerometer Motion Event Explainer" />
+  <meta property="og:title" content="SensorSpeak - Accelerometer Motion Event Explainer" />
   <meta property="og:description" content="Turn raw sensor data into plain-English answers. Fully local. No API keys. No ML training." />
   <meta property="og:type" content="website" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -668,8 +668,8 @@
           anything.
         </h1>
         <p>
-          SensorSpeak turns raw Bosch accelerometer readings into plain-English
-          motion event reports — and answers natural-language questions
+          SensorSpeak turns raw accelerometer readings into plain-English
+          motion event reports - and answers natural-language questions
           using a fully local LLM. No cloud. No subscriptions. No ML training required.
         </p>
         <div class="hero-btns">
@@ -708,7 +708,7 @@
             <div class="terminal-dot td-r"></div>
             <div class="terminal-dot td-y"></div>
             <div class="terminal-dot td-g"></div>
-            <span class="terminal-title">SensorSpeak — ui_app.py</span>
+            <span class="terminal-title">SensorSpeak - ui_app.py</span>
           </div>
           <div class="terminal-body" id="terminal-body">
             <div class="tline" id="tl0"><span class="tprompt">$</span><span class="tcmd">python ui_app.py</span></div>
@@ -722,7 +722,7 @@
             <div class="tline" id="tl8"><span class="tdim"></span></div>
             <div class="tline" id="tl9"><span class="tprompt">A:</span><span class="ta"> A <span style="color:#f43f5e;font-weight:600;">severe-severity</span> "impact" event</span></div>
             <div class="tline" id="tl10"><span class="tdim">  </span><span class="ta"> was detected at 13.00s–14.98s</span></div>
-            <div class="tline" id="tl11"><span class="tdim">  </span><span class="ta"> (peak <span style="color:#22d3ee;font-weight:600;">16.45 m/s²</span>) — sharp spike</span></div>
+            <div class="tline" id="tl11"><span class="tdim">  </span><span class="ta"> (peak <span style="color:#22d3ee;font-weight:600;">16.45 m/s²</span>) - sharp spike</span></div>
             <div class="tline" id="tl12"><span class="tdim">  </span><span class="ta"> consistent with a collision.</span></div>
             <div class="tline" id="tl13"><span class="tdim"></span></div>
             <div class="tline" id="tl14"><span class="tprompt">$</span><span class="cursor"></span></div>
@@ -746,7 +746,7 @@
         <p class="section-sub">
           Industrial machines generate hundreds of thousands of accelerometer readings
           per minute. The raw numbers are meaningless without signal processing,
-          classification, and a way to ask questions — and none of that comes cheap.
+          classification, and a way to ask questions - and none of that comes cheap.
         </p>
         <ul class="problem-points">
           <li class="problem-point">
@@ -774,7 +774,7 @@
       </div>
       <div>
         <div class="data-stream">
-          <div style="font-size:.72rem;color:var(--muted);margin-bottom:16px;letter-spacing:.08em;text-transform:uppercase;">Raw Sensor Output — 100Hz</div>
+          <div style="font-size:.72rem;color:var(--muted);margin-bottom:16px;letter-spacing:.08em;text-transform:uppercase;">Raw Sensor Output - 100Hz</div>
           <div class="ds-row"><span>0.0000s</span><span>0.0127</span><span>-0.0034</span><span>9.8201</span></div>
           <div class="ds-row"><span>0.0100s</span><span>0.0089</span><span>0.0211</span><span>9.8344</span></div>
           <div class="ds-row"><span>0.0200s</span><span>-0.0056</span><span>-0.0178</span><span>9.8091</span></div>
@@ -806,7 +806,7 @@
       <div class="sol-card reveal" style="--accent-grad: linear-gradient(90deg, var(--emerald), var(--cyan));">
         <div class="sol-icon" style="background:rgba(16,185,129,.12);">🎯</div>
         <h3>Rule-Based Detection</h3>
-        <p>No training data. No ML. Deterministic threshold rules classify every sample into idle, walking, impact, shaking, or unknown — with a human-readable explanation for every decision.</p>
+        <p>No training data. No ML. Deterministic threshold rules classify every sample into idle, walking, impact, shaking, or unknown - with a human-readable explanation for every decision.</p>
       </div>
       <div class="sol-card reveal" style="--accent-grad: linear-gradient(90deg, var(--indigo), var(--purple));">
         <div class="sol-icon" style="background:rgba(99,102,241,.12);">🤖</div>
@@ -875,17 +875,17 @@
       <div class="feat-card reveal">
         <div class="feat-icon" style="background:rgba(99,102,241,.12);">🖥️</div>
         <h3>Gradio Chat UI</h3>
-        <p>Browser-based chat interface with CSV upload, backend selector, live event table, and signal visualisation. Runs locally on http://localhost:7860 — no internet required.</p>
+        <p>Browser-based chat interface with CSV upload, backend selector, live event table, and signal visualisation. Runs locally on http://localhost:7860 - no internet required.</p>
       </div>
       <div class="feat-card reveal">
         <div class="feat-icon" style="background:rgba(16,185,129,.12);">📄</div>
-        <h3>Bosch PDF Ingestion</h3>
-        <p>Upload any Bosch sensor datasheet (BMA400, BMI088, BMG250). Ask questions about specs and your recorded data in the same query. 1000-character overlapping chunks.</p>
+        <h3>Sensor PDF Ingestion</h3>
+        <p>Upload any sensor datasheet (BMA400, BMI088, BMG250). Ask questions about specs and your recorded data in the same query. 1000-character overlapping chunks.</p>
       </div>
       <div class="feat-card reveal">
         <div class="feat-icon" style="background:rgba(245,158,11,.12);">🔌</div>
         <h3>Pluggable LLM Backends</h3>
-        <p>Switch between Ollama (offline), OpenAI GPT-3.5/4, HuggingFace Inference API, or HuggingFace Local — one environment variable, no code change.</p>
+        <p>Switch between Ollama (offline), OpenAI GPT-3.5/4, HuggingFace Inference API, or HuggingFace Local - one environment variable, no code change.</p>
       </div>
       <div class="feat-card reveal">
         <div class="feat-icon" style="background:rgba(168,85,247,.12);">🧪</div>
@@ -930,7 +930,7 @@
         <div class="aud-icon" style="background:rgba(99,102,241,.12);">👷</div>
         <div>
           <h3>Maintenance Engineers</h3>
-          <p>No coding required. Upload a CSV from your Bosch sensor, run the pipeline, and ask "Were there any bearing fault signatures today?" in the chat UI.</p>
+          <p>No coding required. Upload a CSV from your sensor, run the pipeline, and ask "Were there any bearing fault signatures today?" in the chat UI.</p>
           <div class="aud-tags">
             <span class="tag">No-Code Interface</span>
             <span class="tag">Shift Reports</span>
@@ -989,7 +989,7 @@
         <div class="arch-or">or</div>
         <div class="arch-node" style="border-color:rgba(245,158,11,.4);">
           <div class="label">Upload</div>
-          <div class="name" style="color:var(--amber);">Bosch PDF</div>
+          <div class="name" style="color:var(--amber);">Sensor PDF</div>
         </div>
       </div>
 
@@ -1035,7 +1035,7 @@
 
       <div style="text-align:center;color:var(--indigo);font-size:1.4rem;padding:16px 0;opacity:.7;">↓</div>
 
-      <div class="arch-section-label">QUERY ENGINE — LLM BACKENDS (choose one)</div>
+      <div class="arch-section-label">QUERY ENGINE - LLM BACKENDS (choose one)</div>
       <div class="arch-row multi">
         <div class="arch-node" style="border-color:rgba(16,185,129,.4);">
           <div class="label">Default · Local</div>
@@ -1159,7 +1159,7 @@
         </div>
         <div class="query-a">
           <span>A</span>
-          <span>Two high-severity events were detected. A <span class="highlight-val">severe-severity "impact"</span> event occurred from <span class="highlight-val">13.00s to 14.98s</span> (peak magnitude <span class="highlight-val">16.45 m/s²</span>) — a sharp high-amplitude spike consistent with a drop or collision. A "shaking" event of <span class="highlight-val">high severity</span> was also recorded from 15.00s to 18.99s (peak magnitude 6.82 m/s²) — rapid high-frequency oscillation indicating intentional agitation.</span>
+          <span>Two high-severity events were detected. A <span class="highlight-val">severe-severity "impact"</span> event occurred from <span class="highlight-val">13.00s to 14.98s</span> (peak magnitude <span class="highlight-val">16.45 m/s²</span>) - a sharp high-amplitude spike consistent with a drop or collision. A "shaking" event of <span class="highlight-val">high severity</span> was also recorded from 15.00s to 18.99s (peak magnitude 6.82 m/s²) - rapid high-frequency oscillation indicating intentional agitation.</span>
         </div>
       </div>
       <div class="query-item reveal">
@@ -1175,7 +1175,7 @@
       <div class="query-item reveal">
         <div class="query-q">
           <span>Q</span>
-          <span>What is the operating voltage range of the BMA400? <span style="font-size:.78rem;color:var(--muted);font-weight:400;">(with Bosch PDF loaded)</span></span>
+          <span>What is the operating voltage range of the BMA400? <span style="font-size:.78rem;color:var(--muted);font-weight:400;">(with Sensor PDF loaded)</span></span>
         </div>
         <div class="query-a">
           <span>A</span>
@@ -1205,7 +1205,7 @@
         <div class="tab-content active" id="tab-colab">
           <div class="code-block">
             <div class="code-bar">
-              <span>Jupyter — paste into a cell</span>
+              <span>Jupyter - paste into a cell</span>
               <button class="code-copy" onclick="copyCode('cc1')">copy</button>
             </div>
             <pre id="cc1"><span class="c"># Section 0: install dependencies</span>
@@ -1225,7 +1225,7 @@
         <div class="tab-content" id="tab-local">
           <div class="code-block">
             <div class="code-bar">
-              <span>Terminal — macOS / Linux</span>
+              <span>Terminal - macOS / Linux</span>
               <button class="code-copy" onclick="copyCode('cc2')">copy</button>
             </div>
             <pre id="cc2"><span class="c"># Clone and set up</span>
@@ -1269,7 +1269,7 @@
         <div class="tab-content" id="tab-pdf">
           <div class="code-block">
             <div class="code-bar">
-              <span>pdf_qa.py — upload Bosch datasheet</span>
+              <span>pdf_qa.py - upload sensor datasheet</span>
               <button class="code-copy" onclick="copyCode('cc4')">copy</button>
             </div>
             <pre id="cc4"><span class="k">from</span> pdf_qa <span class="k">import</span> build_combined_index, query_combined
@@ -1333,7 +1333,7 @@
           <li class="qs-step">
             <div class="qs-num">6</div>
             <div>
-              <h4>Upload a Bosch PDF (optional)</h4>
+              <h4>Upload a Sensor PDF (optional)</h4>
               <p>Run <code>upload_and_build(events, summaries)</code> from <code>pdf_qa.py</code> to add datasheet knowledge to the index.</p>
             </div>
           </li>
@@ -1368,7 +1368,7 @@
           <div class="dot"></div>
           SensorSpeak
         </div>
-        <p>Turn raw Bosch accelerometer data into plain-English motion event reports. Fully local. No cloud. No API keys required.</p>
+        <p>Turn raw accelerometer data into plain-English motion event reports. Fully local. No cloud. No API keys required.</p>
       </div>
       <div class="footer-col">
         <h4>Project</h4>

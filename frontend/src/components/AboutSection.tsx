@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 const EASE = [0.16, 1, 0.3, 1] as const
 
 const EVENTS = [
-  { type: 'idle',    color: 'text-ss-green',  bg: 'bg-green-50  border-green-200',  rule: 'rolling_std < 0.15',               desc: 'Device stationary — no movement' },
+  { type: 'idle',    color: 'text-ss-green',  bg: 'bg-green-50  border-green-200',  rule: 'rolling_std < 0.15',               desc: 'Device stationary - no movement' },
   { type: 'walking', color: 'text-ss-teal',   bg: 'bg-sky-50    border-sky-200',    rule: 'mean 0.8–2.5 · std 0.10–1.8',      desc: 'Rhythmic periodic motion'        },
   { type: 'impact',  color: 'text-ss-red',    bg: 'bg-red-50    border-red-200',    rule: 'mean > 2.5 · std > 1.0',           desc: 'Sudden high-energy transient'    },
   { type: 'shaking', color: 'text-ss-amber',  bg: 'bg-amber-50  border-amber-200',  rule: 'rolling_std > 1.8',                desc: 'Rapid sustained oscillation'     },
@@ -51,12 +51,12 @@ export function AboutSection() {
         <div>
           <p className="section-label mb-3">What SensorSpeak does</p>
           <p className="text-[15px] text-ss-t2 leading-relaxed mb-3">
-            A Bosch accelerometer outputs a stream of numbers at 100 readings per second.
+            A accelerometer outputs a stream of numbers at 100 readings per second.
             Those numbers are meaningless on their own. SensorSpeak turns them into
             labelled motion events and lets you ask questions about them in plain English.
           </p>
           <p className="text-[15px] text-ss-t2 leading-relaxed">
-            Rule-based logic handles detection — no machine learning, no training data.
+            Rule-based logic handles detection - no machine learning, no training data.
             LangChain and LangGraph handle the query pipeline: embedding event summaries,
             retrieving the relevant ones, and generating a grounded LLM answer.
           </p>
@@ -89,8 +89,8 @@ export function AboutSection() {
             <p className="text-[13px] font-semibold text-ss-t1 mb-2">What is an accelerometer?</p>
             <p className="text-[13px] text-ss-t2 leading-relaxed mb-3">
               A small chip that measures how fast something is speeding up or slowing down in
-              three directions at once. The Bosch MEMS chips are used in phones, industrial
-              machines, conveyor belts, and robots. They output numbers continuously —
+              three directions at once. The MEMS chips are used in phones, industrial
+              machines, conveyor belts, and robots. They output numbers continuously -
               typically 100 per second.
             </p>
             <p className="text-[13px] text-ss-t2 leading-relaxed">

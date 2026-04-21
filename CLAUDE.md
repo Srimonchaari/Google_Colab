@@ -1,4 +1,4 @@
-# CLAUDE.md — SensorSpeak Project Guide
+# CLAUDE.md - SensorSpeak Project Guide
 
 This file is read by Claude Code at the start of every session in this directory.
 Always follow the rules below without needing to be reminded.
@@ -7,7 +7,7 @@ Always follow the rules below without needing to be reminded.
 
 ## Project Identity
 
-**Name**: SensorSpeak — Bosch Accelerometer Motion Event Explainer
+**Name**: SensorSpeak - Accelerometer Motion Event Explainer
 **Purpose**: A fully local Python pipeline that ingests raw accelerometer CSV data,
 detects motion events with rule-based logic, generates plain-English summaries,
 and answers natural-language queries via LlamaIndex + Ollama.
@@ -18,18 +18,18 @@ and answers natural-language queries via LlamaIndex + Ollama.
 
 These rules must never be broken, regardless of what is asked:
 
-1. **No cloud services** — no OpenAI, Anthropic API, Google AI, Azure, AWS Bedrock, or any hosted LLM API
-2. **No API keys** — the project must run with zero credentials
-3. **No deep learning training** — no fine-tuning, no LoRA, no custom model training
-4. **No seaborn** — matplotlib only for all visualisation
-5. **No new ML model training** — rule-based detection only; thresholds are tuned, not learned
-6. **Ollama is the only LLM backend** — model: `qwen2.5:0.5b` (default); alternatives listed in README Model Options table
-7. **HuggingFace bge-small-en-v1.5 is the only embedding model** — loaded locally via `sentence-transformers`
-8. **Python 3.10 only** — no f-string walrus operators or 3.11+ syntax
+1. **No cloud services** - no OpenAI, Anthropic API, Google AI, Azure, AWS Bedrock, or any hosted LLM API
+2. **No API keys** - the project must run with zero credentials
+3. **No deep learning training** - no fine-tuning, no LoRA, no custom model training
+4. **No seaborn** - matplotlib only for all visualisation
+5. **No new ML model training** - rule-based detection only; thresholds are tuned, not learned
+6. **Ollama is the only LLM backend** - model: `qwen2.5:0.5b` (default); alternatives listed in README Model Options table
+7. **HuggingFace bge-small-en-v1.5 is the only embedding model** - loaded locally via `sentence-transformers`
+8. **Python 3.10 only** - no f-string walrus operators or 3.11+ syntax
 
 ---
 
-## Stack (frozen — do not add new dependencies without asking)
+## Stack (frozen - do not add new dependencies without asking)
 
 | Layer | Tool | Version |
 |---|---|---|
@@ -42,8 +42,8 @@ These rules must never be broken, regardless of what is asked:
 | Embeddings | llama-index-embeddings-huggingface | >=0.1.0 |
 | Embedding model | sentence-transformers | >=2.2.0 |
 | LLM server | Ollama | latest |
-| LLM model | qwen2.5:0.5b | — |
-| Embedding model | BAAI/bge-small-en-v1.5 | — |
+| LLM model | qwen2.5:0.5b | - |
+| Embedding model | BAAI/bge-small-en-v1.5 | - |
 
 ---
 
@@ -83,13 +83,13 @@ Later sections depend on earlier ones. Never re-order them.
 
 ## Coding Rules
 
-- **All thresholds as named constants** at the top of their cell — never magic numbers inline
-- **Modular functions only** — no logic outside function bodies except the final call per cell
-- **Keyword fallback is always present** — `query_events()` must work without Ollama running
-- **Safe column access** — always validate required columns with a clear `ValueError` before use
+- **All thresholds as named constants** at the top of their cell - never magic numbers inline
+- **Modular functions only** - no logic outside function bodies except the final call per cell
+- **Keyword fallback is always present** - `query_events()` must work without Ollama running
+- **Safe column access** - always validate required columns with a clear `ValueError` before use
 - **Single-quotes preferred** in Python string literals to keep notebook JSON clean
-- **No comments on obvious lines** — only comment non-obvious behaviour or hidden constraints
-- **No trailing summaries** in generated code cells — let the print statements speak
+- **No comments on obvious lines** - only comment non-obvious behaviour or hidden constraints
+- **No trailing summaries** in generated code cells - let the print statements speak
 
 ---
 
@@ -171,7 +171,7 @@ outputs/accelerometer_overview.png
 
 When suggesting or implementing improvements, keep these phases in mind:
 
-- **Phase 1 (current)**: offline Colab notebook — DONE
+- **Phase 1 (current)**: offline Colab notebook - DONE
 - **Phase 2 (next)**: live hardware streaming + FastAPI `/query` endpoint
 - **Phase 3 (future)**: Streamlit dashboard + threshold-breach alerts + PDF reports
 
@@ -183,11 +183,11 @@ Do not implement Phase 2 or 3 features unless explicitly requested.
 
 | File | Purpose |
 |---|---|
-| `SensorSpeak.ipynb` | Main deliverable — full Colab notebook |
+| `SensorSpeak.ipynb` | Main deliverable - full Colab notebook |
 | `README.md` | Project documentation for GitHub and recruiters |
 | `requirements.txt` | Pinned Python dependencies |
 | `QUICKSTART.md` | One-page setup + troubleshooting guide |
-| `CLAUDE.md` | This file — Claude Code session context |
+| `CLAUDE.md` | This file - Claude Code session context |
 | `agent.md` | Agent behaviour rules for autonomous tasks |
 | `Bosch_Accelerometer_Motion_Event_Explainer.ipynb` | Earlier prototype (reference only) |
 | `Bosch_Accelerometer_Ollama_QueryEngine.ipynb` | Earlier prototype (reference only) |
